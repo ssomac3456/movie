@@ -1,5 +1,5 @@
 import { HashRouter, Route, Routes } from "react-router-dom";
-import Movie from "./pages/movie/movie";
+import Movie from "./pages/movie/Movie";
 import Home from "./pages/home/Home";
 import Search from "./pages/search/Searcl";
 import ErrorPage from "./pages/ErrorPage";

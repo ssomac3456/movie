@@ -1,3 +1,6 @@
+import { getNowPlaying } from "../../api/movieApi";
+
 export default function Home() {
-  return <div>Home</div>;
+  getNowPlaying();
+  return <div className="">Home</div>;
 }
