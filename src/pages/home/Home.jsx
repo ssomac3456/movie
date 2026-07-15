@@ -31,8 +31,10 @@ export default function Home() {
     })();
   }, []);
 
-  console.log("현재:", nowData);
-  console.log("인기:", popData);
+  console.log("현재:", movie);
+  console.log("인기:", movie.popData);
+
+  console.log(movie?.nowPlaying?.response?.results[0].title);
 
   // useEffect(() => {
   //   const movieDate = async () => {
@@ -60,5 +62,29 @@ export default function Home() {
   // useEffect(() => {
   //   console.log("num값이 변경될때마다 실행");
   // }, [num]);
-  return <>home</>;
+  return (
+    <div className="min-h-screen">
+      <section
+        className="h-[80vh] px-[20px] lg:px-[80px] xl:px-[200px] relative"
+        style={{
+          background: `URL() no-repeat center / cover`,
+        }}
+      >
+        <div className="absolute bottom-[100px] left-[20px] lg:left-[80px] xl:left-[200px]">
+          <h3 className="text-[30px] lg:text-2xl xl:text-[70px] font-semibold">
+            {movie?.nowPlaying?.response?.results[0].title}
+          </h3>
+          <p className="text-[14px] xl:text-[18px] opacity-55 ">
+            {movie?.nowPlaying?.response?.results[0].overview.slice(0, 100) +
+              "..."}
+          </p>
+          <Link to ={/movie} 
+          className="block px-8 py-4 bg-red-500 hover:bg-red-800 transition">
+            more &rarr;{" "}
+          </Link>
+        </div>
+      </section>
+      home
+    </div>
+  );
 }
