@@ -24,3 +24,8 @@ fetch(url, options)
   .then(res => res.json())
   .then(json => console.log(json))
   .catch(err => console.error(err)); -->
+
+<!-- 예외
+=>try~catch
+=>조건문과 비슷하게 코드나 함수에 오류나 문제점이 발생했을때 핸들링 처리가능함
+=>if문과 차이점은 이프문은 무조건 조건을 작성해야되지만 트라이는 조건없이 문제점을 잡아낼수있음 -->
