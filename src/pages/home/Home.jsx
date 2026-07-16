@@ -1,29 +1,30 @@
 import { useEffect, useState } from "react";
-import { getNowPlaying } from "../../api/movieApi";
+import {
+  getNowPlaying,
+  getPopular,
+  getTopRated,
+  getUpcoming,
+} from "../../api/movieApi";
+import { Link } from "react-router-dom";
 
 export default function Home() {
-  const [movie, setMovieData] = useState({});
-
-  // const [nowData, setNowData] = useState();
-  // const [popData, setPopData] = useState();
+  const [movieData, setMovieData] = useState({});
 
   useEffect(() => {
     (async () => {
       try {
-        const [nowPlaying, popular] = await Promise.all([
+        const [nowPlaying, popular, topRated, upComming] = await Promise.all([
           getNowPlaying(),
-          getpopular(),
+          getPopular(),
+          getTopRated(),
+          getUpcoming(),
         ]);
-
-        // const nowPlaying = await getNowPlaying();
-        // const popular = await getpopular();
-
-        // setNowData(nowPlaying);
-        // setPopData(popular);
 
         setMovieData({
           nowPlaying,
           popular,
+          topRated,
+          upComming,
         });
       } catch (error) {
         console.log(error);
@@ -31,60 +32,46 @@ export default function Home() {
     })();
   }, []);
 
-  console.log("현재:", movie);
-  console.log("인기:", movie.popData);
+  console.log(movieData?.nowPlaying?.response?.results[0]);
 
-  console.log(movie?.nowPlaying?.response?.results[0].title);
-
-  // useEffect(() => {
-  //   const movieDate = async () => {
-  //     const nowPlayingData = await getNowPlaying();
-  //     console.log(nowPlayingData.response.results[0].title);
-  //   };
-  //   movieDate();
-  // }, []);
-  // useEffect(() => {
-  //   (async () => {
-  //     const nowData = await getNowPlaying();
-  //     console.log(nowData);
-  //   })();
-  // }, []);
-  //getNowPlaying();
-
-  // const [num, setNum] = useState(0);
-
-  // useEffect(() => {
-  //   console.log("랜더링 실행");
-  // }, []);
-  // useEffect(() => {
-  //   console.log("처음 랜더링시 1회 실행");
-  // }, []);
-  // useEffect(() => {
-  //   console.log("num값이 변경될때마다 실행");
-  // }, [num]);
   return (
     <div className="min-h-screen">
       <section
-        className="h-[80vh] px-[20px] lg:px-[80px] xl:px-[200px] relative"
         style={{
-          background: `URL() no-repeat center / cover`,
+          background: `#808080 url(https://image.tmdb.org/t/p/original${movieData?.nowPlaying?.response?.results[0].backdrop_path}) no-repeat center / cover`,
         }}
+        className="h-[80vh] px-[20px] lg:px-[80px] xl:px-[200px] relative"
       >
-        <div className="absolute bottom-[100px] left-[20px] lg:left-[80px] xl:left-[200px]">
-          <h3 className="text-[30px] lg:text-2xl xl:text-[70px] font-semibold">
-            {movie?.nowPlaying?.response?.results[0].title}
+        <div
+          className="absolute bottom-[100px] 
+        left-[20px] lg:left-[80px] xl:left-[200px]"
+        >
+          <h3 className="text-[30px] lg:text-[50px] xl:text-[70px] font-semibold">
+            {movieData?.nowPlaying?.response?.results[0].title}
           </h3>
-          <p className="text-[14px] xl:text-[18px] opacity-55 ">
-            {movie?.nowPlaying?.response?.results[0].overview.slice(0, 100) +
-              "..."}
+          <p className="text-[14px] xl:text-[18px] opacity-70 max-w-[800px] mt-4 mb-16">
+            {movieData?.nowPlaying?.response?.results[0].overview.slice(
+              0,
+              100,
+            ) + "..."}
           </p>
-          <Link to ={/movie} 
-          className="block px-8 py-4 bg-red-500 hover:bg-red-800 transition">
-            more &rarr;{" "}
+
+          <Link
+            to={`/movie/${movieData?.nowPlaying?.response?.results[0]}`}
+            className="px-8 py-4 
+          bg-red-500 rounded-lg hover:bg-red-700 transition"
+          >
+            More View &rarr;
           </Link>
         </div>
       </section>
-      home
     </div>
   );
 }
+
+// *예외
+// =>try ~ catch
+// =>조건문과 비슷하게 코드나 함수에 오류나 문제점이 발생했을때
+// 핸들링 처리 가능함
+// =>if문과 차이점은 if문은 무조건 조건을 작성해야되지만
+// try는 조건없이 문제점을 잡아낼수 있음
