@@ -29,3 +29,4 @@ export const getUpcoming = () => fetchMovie("movie/upcoming");
 
 //영화 상세 요청
 export const getDetail = (movie_id) => fetchMovie(`movie/${movie_id}`);
+export const getSearch = (keyword) => fetchMovie(`movie/${keyward}`);
