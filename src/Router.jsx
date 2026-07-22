@@ -1,6 +1,6 @@
 import { HashRouter, Route, Routes } from "react-router-dom";
-import Movie from "./pages/movie/Movie";
 import Home from "./pages/home/Home";
+import Movie from "./pages/movie/Movie";
 import Search from "./pages/search/Search";
 import ErrorPage from "./pages/ErrorPage";
 import Header from "./components/Header";

@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
-import { ORIGINAL_URL } from "../../../constants/imgBaseUrl";
+import { ORIGIAL_URL } from "../../../constants/imgBaseUrl";
 
 export default function Section_1({ data }) {
   return (
     <section
       style={{
-        background: `#808080 url(${ORIGINAL_URL}${data.backdrop_path}) no-repeat center / cover`,
+        background: `#808080 url(${ORIGIAL_URL}${data.backdrop_path}) no-repeat center / cover`,
       }}
       className="h-[80vh] px-[20px] lg:px-[80px] xl:px-[200px] relative"
     >
