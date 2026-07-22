@@ -37,9 +37,25 @@ npm gh_pages 검색=> 설치하기
 
 페키지제이슨에서 스크립트에 추가
 "predeploy": "npm run build",
-    "deploy": "gh-pages -d list"
+    "deploy": "gh-pages -d dist"
 
     바이트 컨피그제이에스에
     base: "/movie/", 추가
 
+    터미널에 npm run deploy
+    치면 Published 뜨면 성공
+
+    깃허브 들어가서 셋팅>페이지즈 누르면 위에 비지트 뜸
+    그러고나서 뜬 주소 클릭하면 됨
+
  -->
+
+ <!-- 
+ 7월 23일 
+ 완전 새롭게 처음부터 영화 리뷰앱 제작
+ =>기획
+ =>themovieapi사이트에서 추가할 내용이 있는지 리서치
+ =>ux,ui 변경,페이지 추가, 로그인 등
+ =>아이콘 활용, 인터랙티브 추가
+ 
+  -->
